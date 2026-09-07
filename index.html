@@ -241,6 +241,7 @@
     <button data-screen="mode6"><span class="num">6</span><span>Weak Numbers</span></button>
     <button data-screen="mode7"><span class="num">7</span><span>Addition / Make 100</span></button>
     <button data-screen="mode8"><span class="num">8</span><span>Timed Dealer Test</span></button>
+    <button data-screen="mode9"><span class="num">9</span><span>Blinds + Callers Test</span></button>
     <div class="nav-label">Reference</div>
     <button data-screen="study"><span class="num">S</span><span>Study / Cheat Sheets</span></button>
   </aside>
@@ -253,7 +254,7 @@
         <div class="sub">This trainer is built around the exact PLO calculation you use in class: triple the last bet, then add the betting trail. Your weak facts and slow answers are saved on this computer and recycled more often.</div>
         <div class="mode-grid">
           <div class="mode-card"><h3>Multiplication foundation</h3><p>Master tables 2–12 with ordered learning, random recall, speed work, perfect-table tests, and full mixed tests.</p></div>
-          <div class="mode-card"><h3>PLO dealer math</h3><p>Train ×3, Triple + Trail, awkward 5-ending numbers, and realistic POT answers under time pressure.</p></div>
+          <div class="mode-card"><h3>PLO dealer math</h3><p>Train ×3, Triple + Trail, awkward 5-ending numbers, blinds + callers, and realistic POT answers under time pressure.</p></div>
           <div class="mode-card"><h3>Mental shortcuts</h3><p>Split 75 × 3 into 70 × 3 + 5 × 3. Bridge additions to the next hundred instead of counting slowly.</p></div>
           <div class="mode-card"><h3>Adaptive weak-number practice</h3><p>Wrong or slow facts become more likely to return. Multiplication weaknesses also influence PLO number selection.</p></div>
         </div>
@@ -343,14 +344,22 @@
       </div><div id="trainer-mode8"></div>
     </div>
 
+    <div class="screen" id="screen-mode9">
+      <div class="panel section"><div class="eyebrow">Mode 9</div><h2>Blinds + Callers Test</h2><div class="sub">Memorize the dealer shortcut from your class: Blinds + 1 caller = $20, then every additional caller adds $5.</div>
+        <div class="grid-2" style="margin-top:15px"><div class="field"><label>Test length</label><select id="m9-count"><option value="8">8 questions — each fact once</option><option value="16" selected>16 questions — each fact twice</option><option value="24">24 questions — each fact three times</option></select></div><div class="field"><label>Facts</label><select disabled><option>1–8 callers</option></select></div></div>
+        <div class="setup-actions"><button class="btn primary" data-start="mode9">Start Blinds + Callers Test</button><button class="btn ghost" data-study="blinds">Open Blinds Chart</button></div>
+      </div><div id="trainer-mode9"></div>
+    </div>
+
     <div class="screen" id="screen-study">
       <div class="panel section"><div class="eyebrow">Study Mode</div><h2>Cheat Sheets & Mental Shortcuts</h2>
-        <div class="study-tabs"><button class="btn primary" data-study-tab="tables">Tables 2–12</button><button class="btn ghost" data-study-tab="triple">×3 Poker Chart</button><button class="btn ghost" data-study-tab="make100">Make 100</button><button class="btn ghost" data-study-tab="formula">Triple + Trail</button><button class="btn ghost" data-study-tab="shortcuts">Shortcuts</button></div>
+        <div class="study-tabs"><button class="btn primary" data-study-tab="tables">Tables 2–12</button><button class="btn ghost" data-study-tab="triple">×3 Poker Chart</button><button class="btn ghost" data-study-tab="make100">Make 100</button><button class="btn ghost" data-study-tab="formula">Triple + Trail</button><button class="btn ghost" data-study-tab="shortcuts">Shortcuts</button><button class="btn ghost" data-study-tab="blinds">Blinds + Callers</button></div>
         <div class="study-content active" id="study-tables"><div class="mult-grid" id="study-mult-grid"></div></div>
         <div class="study-content" id="study-triple"><div class="callout"><strong>Pattern:</strong> for a number ending in 5, split off the 5. Example: 85 × 3 = (80 × 3) + (5 × 3) = 240 + 15 = 255.</div><table class="study-table"><thead><tr><th>Bet</th><th>×3</th></tr></thead><tbody id="triple-chart"></tbody></table></div>
         <div class="study-content" id="study-make100"><div class="callout"><strong>195 + 85:</strong> 195 needs 5 to reach 200. Take 5 from 85, leaving 80. 200 + 80 = 280.</div><div class="callout"><strong>225 + 95:</strong> 225 needs 75 to reach 300. Take 75 from 95, leaving 20. 300 + 20 = 320.</div><div class="callout"><strong>Rule:</strong> look for the amount needed to reach the next 100. If the second number is large enough, move that amount first, then add the remainder.</div></div>
         <div class="study-content" id="study-formula"><div class="callout"><strong>POT = Last Bet × 3 + Betting Trail</strong><br><br>Example: Last Bet $75, Trail $95.<br>70 × 3 = 210<br>5 × 3 = 15<br>210 + 15 = 225<br>225 + 95 = 320<br><strong>POT = $320</strong></div></div>
         <div class="study-content" id="study-shortcuts"><div class="callout"><strong>×3 ending in 5:</strong> remove the 5, triple the round-ten part, then add 15.</div><div class="callout"><strong>Make the next 100:</strong> ask “how much gets me to 200 / 300 / 400?” Move that amount first.</div><div class="callout"><strong>Dealer priority:</strong> accuracy first, then smooth speed. Repeated correct answers under 5 seconds are the target.</div><div class="callout"><strong>Weak-number rule:</strong> anything wrong or slower than your target should return more often until it becomes automatic.</div></div>
+        <div class="study-content" id="study-blinds"><div class="callout"><strong>Blinds + Callers shortcut:</strong> memorize $20 for 1 caller. Every additional caller adds $5.</div><table class="study-table"><thead><tr><th>Situation</th><th>Total</th></tr></thead><tbody><tr><td>Blinds + 1 caller</td><td>$20</td></tr><tr><td>Blinds + 2 callers</td><td>$25</td></tr><tr><td>Blinds + 3 callers</td><td>$30</td></tr><tr><td>Blinds + 4 callers</td><td>$35</td></tr><tr><td>Blinds + 5 callers</td><td>$40</td></tr><tr><td>Blinds + 6 callers</td><td>$45</td></tr><tr><td>Blinds + 7 callers</td><td>$50</td></tr><tr><td>Blinds + 8 callers</td><td>$55</td></tr></tbody></table></div>
       </div>
     </div>
   </section>
@@ -388,6 +397,7 @@ const DealerMathCore = (() => {
   const triple = n => Number(n) * 3;
   const multiply = (a,b) => Number(a) * Number(b);
   const potAmount = (lastBet, trail) => triple(lastBet) + Number(trail);
+  const blindsCallersTotal = callers => 20 + (Number(callers) - 1) * 5;
   function tripleSteps(n) {
     n = Number(n);
     if (n % 10 === 5) {
@@ -427,7 +437,7 @@ const DealerMathCore = (() => {
     const t = triple(lastBet);
     return [...first, `Then add the betting trail:`, ...additionSteps(t, trail), `POT = $${potAmount(lastBet,trail)}`];
   }
-  return { triple, multiply, potAmount, tripleSteps, additionSteps, potSteps };
+  return { triple, multiply, potAmount, blindsCallersTotal, tripleSteps, additionSteps, potSteps };
 })();
 if (typeof globalThis !== 'undefined') globalThis.DealerMathCore = DealerMathCore;
 /* CORE_END */
@@ -445,7 +455,7 @@ const LEVELS = {
 };
 const defaultData = () => ({
   stats:{correct:0,wrong:0,currentStreak:0,bestStreak:0,totalMs:0,timedAnswers:0,fastestMs:null,slowestMs:null},
-  tables:{}, facts:{}, betStats:{}, trailStats:{}, addStats:{}, progressiveLevel:1,
+  tables:{}, facts:{}, betStats:{}, trailStats:{}, addStats:{}, callerStats:{}, progressiveLevel:1,
   settings:{slowSec:5,autoDelay:650}
 });
 let data = loadData();
@@ -466,6 +476,7 @@ function mergeData(base, incoming){
   out.betStats = incoming.betStats || {};
   out.trailStats = incoming.trailStats || {};
   out.addStats = incoming.addStats || {};
+  out.callerStats = incoming.callerStats || {};
   out.progressiveLevel = incoming.progressiveLevel || 1;
   return out;
 }
@@ -508,6 +519,9 @@ function recordAnswer(problem, correct, ms){
     trackBucket(ensureBucket(data.addStats,`${problem.a}+${problem.b}`),correct,ms);
     trackBucket(ensureBucket(data.trailStats,String(problem.b)),correct,ms);
   }
+  if(problem.type==='callers'){
+    trackBucket(ensureBucket(data.callerStats,String(problem.callers)),correct,ms);
+  }
   saveData();
 }
 
@@ -542,6 +556,10 @@ function generateAddition(level=2, adaptive=true){
   } while(tries<30 && a+b>maxTotal);
   return {type:'addition',a,b,answer:a+b};
 }
+function generateBlindsCallers(callers=null){
+  const n=callers || weightedPick([1,2,3,4,5,6,7,8],x=>weakness(data.callerStats[x]));
+  return {type:'callers',callers:n,answer:DealerMathCore.blindsCallersTotal(n)};
+}
 function generateMult(tables, forcedTable=null){
   const a=forcedTable || weightedPick(tables,t=>2+weakness(data.tables[t]));
   const bs=Array.from({length:12},(_,i)=>i+1);
@@ -553,6 +571,7 @@ function generateWeak(){
   Object.entries(data.facts).forEach(([k,b])=>candidates.push({kind:'fact',key:k,score:weakness(b)}));
   Object.entries(data.betStats).forEach(([k,b])=>candidates.push({kind:'bet',key:k,score:weakness(b)+.5}));
   Object.entries(data.trailStats).forEach(([k,b])=>candidates.push({kind:'trail',key:k,score:weakness(b)}));
+  Object.entries(data.callerStats).forEach(([k,b])=>candidates.push({kind:'callers',key:k,score:weakness(b)+.5}));
   candidates.sort((a,b)=>b.score-a.score);
   const top=candidates.slice(0,25);
   if(!top.length || Math.random()<.3) return Math.random()<.5 ? generateTriple(3,true) : generatePot(3,true);
@@ -562,6 +581,9 @@ function generateWeak(){
   }
   if(chosen.kind==='bet'){
     const lastBet=Number(chosen.key); return Math.random()<.55 ? {type:'triple',lastBet,answer:lastBet*3,weak:true} : (()=>{const trail=randomFrom([25,35,45,55,65,75,85,95,105,115]);return {type:'pot',lastBet,trail,answer:DealerMathCore.potAmount(lastBet,trail),weak:true};})();
+  }
+  if(chosen.kind==='callers'){
+    const callers=Number(chosen.key); return {...generateBlindsCallers(callers),weak:true};
   }
   const trail=Number(chosen.key); const lastBet=randomFrom([35,45,55,65,75,85,95]); return {type:'pot',lastBet,trail,answer:DealerMathCore.potAmount(lastBet,trail),weak:true};
 }
@@ -598,7 +620,7 @@ function buildTrainer(mode){
     }
   });
 }
-function initAllTrainers(){ ['mode1','mode2','mode3','mode4','mode5','mode6','mode7','mode8'].forEach(buildTrainer); }
+function initAllTrainers(){ ['mode1','mode2','mode3','mode4','mode5','mode6','mode7','mode8','mode9'].forEach(buildTrainer); }
 
 // The trainer uses one shared session object. A completed session cannot be
 // reused because its index/queue/timer state is already exhausted. Internal
@@ -640,6 +662,11 @@ function prepareSession(mode){
   if(mode==='mode6'){ base.count=25; base.weakMode=true; }
   if(mode==='mode7'){ base.level=Number(document.getElementById('m7-level').value); base.count=Number(document.getElementById('m7-count').value); }
   if(mode==='mode8'){ base.level=Number(document.getElementById('m8-level').value); base.count=Number(document.getElementById('m8-count').value); base.test=true; }
+  if(mode==='mode9'){
+    base.count=Number(document.getElementById('m9-count').value); base.level=null; base.blindsTest=true;
+    const rounds=base.count/8;
+    base.queue=shuffle(Array.from({length:rounds},()=>[1,2,3,4,5,6,7,8]).flat().map(callers=>generateBlindsCallers(callers)));
+  }
   session=base;
   renderPreparedState();
 }
@@ -662,7 +689,7 @@ function renderPreparedState(){
 }
 function modeName(s){
   if(s.mode==='mode1') return s.practice==='speed'?'Multiplication Speed':s.practice==='perfect'?'Perfect Table Test':s.practice==='full'?'Full 2–12 Test':'Multiplication';
-  return {mode2:'PLO ×3',mode3:'Triple + Trail',mode4:'Rapid Fire',mode5:'Progressive',mode6:'Weak Numbers',mode7:'Make 100',mode8:'Timed Dealer Test'}[s.mode]||'Training';
+  return {mode2:'PLO ×3',mode3:'Triple + Trail',mode4:'Rapid Fire',mode5:'Progressive',mode6:'Weak Numbers',mode7:'Make 100',mode8:'Timed Dealer Test',mode9:'Blinds + Callers Test'}[s.mode]||'Training';
 }
 function startPreparedSession(){
   if(!session) return;
@@ -706,14 +733,16 @@ function getNextProblem(){
   if(session.mode==='mode6') return generateWeak();
   if(session.mode==='mode7') return generateAddition(session.level,true);
   if(session.mode==='mode8'){
-    const r=Math.random(); if(r<.2) return generateTriple(session.level,true); if(r<.78) return generatePot(session.level,true); return generateAddition(Math.min(3,Math.max(1,session.level-1)),true);
+    const r=Math.random(); if(r<.18) return generateTriple(session.level,true); if(r<.68) return generatePot(session.level,true); if(r<.88) return generateAddition(Math.min(3,Math.max(1,session.level-1)),true); return generateBlindsCallers();
   }
+  if(session.mode==='mode9') return session.queue.length ? session.queue.shift() : null;
 }
 function renderProblem(p,el){
   if(p.type==='mult') el.innerHTML=`<div class="problem-label">Multiplication</div><div class="problem-main">${p.a} × ${p.b}</div>`;
   if(p.type==='triple') el.innerHTML=`<div class="problem-label">PLO ×3</div><div class="problem-main">${money(p.lastBet)} × 3</div>`;
   if(p.type==='addition') el.innerHTML=`<div class="problem-label">Add quickly</div><div class="problem-main">${p.a} + ${p.b}</div>`;
   if(p.type==='pot') el.innerHTML=`<div class="problem-stack"><div class="problem-line"><span>Last Bet</span><strong>${money(p.lastBet)}</strong></div><div class="problem-line"><span>Betting Trail</span><strong>${money(p.trail)}</strong></div></div><div class="pot-call">PLAYER SAYS: POT</div>`;
+  if(p.type==='callers') el.innerHTML=`<div class="problem-label">Blinds + Callers</div><div class="problem-main">Blinds + ${p.callers} ${p.callers===1?'caller':'callers'}</div><div class="pot-call">TOTAL?</div>`;
 }
 function currentProblemMs(){
   if(!session || !session.problemStarted) return 0;
@@ -752,7 +781,7 @@ function showCorrectFeedback(p,ms){
   session.answerLocked=true;
   host.querySelector('#control-next').disabled=true;
 }
-function moneyIfNeeded(p,n){ return (p.type==='pot'||p.type==='triple')?money(n):String(n); }
+function moneyIfNeeded(p,n){ return (p.type==='pot'||p.type==='triple'||p.type==='callers')?money(n):String(n); }
 function showWrongFeedback(p,given,ms){
   session.problemElapsedBeforePause=ms; session.paused=true; session.answerLocked=true; session.pauseStarted=performance.now();
   const host=trainerHost(session.mode); const fb=host.querySelector('#feedback'); const steps=explainProblem(p);
@@ -764,6 +793,11 @@ function explainProblem(p){
   if(p.type==='triple') return DealerMathCore.tripleSteps(p.lastBet).map(x=>`$${x.replace(/(?<!\d)(\d+)(?!\d)/g,'$1')}`.replace('$5 ×','$5 ×'));
   if(p.type==='addition') return DealerMathCore.additionSteps(p.a,p.b);
   if(p.type==='pot') return DealerMathCore.potSteps(p.lastBet,p.trail);
+  if(p.type==='callers'){
+    if(p.callers===1) return [`Blinds + 1 caller = $20.`, `That is your base fact to memorize.`];
+    const extra=p.callers-1, add=extra*5;
+    return [`Start with: Blinds + 1 caller = $20.`, `There are ${extra} additional callers.`, `${extra} × $5 = $${add}.`, `$20 + $${add} = $${p.answer}.`];
+  }
   return [`Correct answer: ${p.answer}`];
 }
 function doneWrong(){
@@ -833,6 +867,7 @@ function sessionRecommendations(s){
     if(m.type==='triple') list.push(`${money(m.lastBet)} × 3`);
     if(m.type==='pot') list.push(`POT: ${money(m.lastBet)} × 3 + ${money(m.trail)}`);
     if(m.type==='addition') list.push(`${m.a} + ${m.b}`);
+    if(m.type==='callers') list.push(`Blinds + ${m.callers} ${m.callers===1?'caller':'callers'}`);
   });
   return [...new Set(list)].slice(0,6);
 }
@@ -856,6 +891,7 @@ function renderWeakList(){
   Object.entries(data.facts).forEach(([k,b])=>{ if(b.count) entries.push({label:k,score:weakness(b),detail:`${b.wrong} wrong`}); });
   Object.entries(data.betStats).forEach(([k,b])=>{ if(b.count) entries.push({label:`$${k} × 3`,score:weakness(b),detail:`${b.wrong} wrong`}); });
   Object.entries(data.trailStats).forEach(([k,b])=>{ if(b.count) entries.push({label:`Trail $${k}`,score:weakness(b),detail:`${b.slow} slow`}); });
+  Object.entries(data.callerStats).forEach(([k,b])=>{ if(b.count) entries.push({label:`Blinds + ${k} ${Number(k)===1?'caller':'callers'}`,score:weakness(b),detail:`${b.wrong} wrong`}); });
   entries.sort((a,b)=>b.score-a.score); const top=entries.slice(0,7); const el=document.getElementById('weak-list');
   el.innerHTML=top.length?top.map(x=>`<div class="weak-item"><span>${esc(x.label)}</span><span>${esc(x.detail)}</span></div>`).join(''):'<div class="empty">Answer some problems to build your weak-number profile.</div>';
 }
@@ -909,6 +945,14 @@ function runInternalSelfTest(){
     DealerMathCore.potAmount(85,65)===320,
     DealerMathCore.potAmount(125,95)===470,
     DealerMathCore.potAmount(195,85)===670,
+    DealerMathCore.blindsCallersTotal(1)===20,
+    DealerMathCore.blindsCallersTotal(2)===25,
+    DealerMathCore.blindsCallersTotal(3)===30,
+    DealerMathCore.blindsCallersTotal(4)===35,
+    DealerMathCore.blindsCallersTotal(5)===40,
+    DealerMathCore.blindsCallersTotal(6)===45,
+    DealerMathCore.blindsCallersTotal(7)===50,
+    DealerMathCore.blindsCallersTotal(8)===55,
     (195+85)===280,
     (225+95)===320
   ];
