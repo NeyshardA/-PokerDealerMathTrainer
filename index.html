@@ -345,8 +345,8 @@
     </div>
 
     <div class="screen" id="screen-mode9">
-      <div class="panel section"><div class="eyebrow">Mode 9</div><h2>Blinds + Callers Test</h2><div class="sub">Memorize the dealer shortcut from your class: Blinds + 1 caller = $20, then every additional caller adds $5.</div>
-        <div class="grid-2" style="margin-top:15px"><div class="field"><label>Test length</label><select id="m9-count"><option value="8">8 questions — each fact once</option><option value="16" selected>16 questions — each fact twice</option><option value="24">24 questions — each fact three times</option></select></div><div class="field"><label>Facts</label><select disabled><option>1–8 callers</option></select></div></div>
+      <div class="panel section"><div class="eyebrow">Mode 9</div><h2>Blinds + Callers Test</h2><div class="sub">Memorize the dealer shortcut from your class: Blinds only = $15, then every caller adds $5.</div>
+        <div class="grid-2" style="margin-top:15px"><div class="field"><label>Test length</label><select id="m9-count"><option value="9">9 questions — each fact once</option><option value="18" selected>18 questions — each fact twice</option><option value="27">27 questions — each fact three times</option></select></div><div class="field"><label>Facts</label><select disabled><option>Blinds only + 1–8 callers</option></select></div></div>
         <div class="setup-actions"><button class="btn primary" data-start="mode9">Start Blinds + Callers Test</button><button class="btn ghost" data-study="blinds">Open Blinds Chart</button></div>
       </div><div id="trainer-mode9"></div>
     </div>
@@ -359,7 +359,7 @@
         <div class="study-content" id="study-make100"><div class="callout"><strong>195 + 85:</strong> 195 needs 5 to reach 200. Take 5 from 85, leaving 80. 200 + 80 = 280.</div><div class="callout"><strong>225 + 95:</strong> 225 needs 75 to reach 300. Take 75 from 95, leaving 20. 300 + 20 = 320.</div><div class="callout"><strong>Rule:</strong> look for the amount needed to reach the next 100. If the second number is large enough, move that amount first, then add the remainder.</div></div>
         <div class="study-content" id="study-formula"><div class="callout"><strong>POT = Last Bet × 3 + Betting Trail</strong><br><br>Example: Last Bet $75, Trail $95.<br>70 × 3 = 210<br>5 × 3 = 15<br>210 + 15 = 225<br>225 + 95 = 320<br><strong>POT = $320</strong></div></div>
         <div class="study-content" id="study-shortcuts"><div class="callout"><strong>×3 ending in 5:</strong> remove the 5, triple the round-ten part, then add 15.</div><div class="callout"><strong>Make the next 100:</strong> ask “how much gets me to 200 / 300 / 400?” Move that amount first.</div><div class="callout"><strong>Dealer priority:</strong> accuracy first, then smooth speed. Repeated correct answers under 5 seconds are the target.</div><div class="callout"><strong>Weak-number rule:</strong> anything wrong or slower than your target should return more often until it becomes automatic.</div></div>
-        <div class="study-content" id="study-blinds"><div class="callout"><strong>Blinds + Callers shortcut:</strong> memorize $20 for 1 caller. Every additional caller adds $5.</div><table class="study-table"><thead><tr><th>Situation</th><th>Total</th></tr></thead><tbody><tr><td>Blinds + 1 caller</td><td>$20</td></tr><tr><td>Blinds + 2 callers</td><td>$25</td></tr><tr><td>Blinds + 3 callers</td><td>$30</td></tr><tr><td>Blinds + 4 callers</td><td>$35</td></tr><tr><td>Blinds + 5 callers</td><td>$40</td></tr><tr><td>Blinds + 6 callers</td><td>$45</td></tr><tr><td>Blinds + 7 callers</td><td>$50</td></tr><tr><td>Blinds + 8 callers</td><td>$55</td></tr></tbody></table></div>
+        <div class="study-content" id="study-blinds"><div class="callout"><strong>Blinds + Callers shortcut:</strong> memorize Blinds only = $15. Every caller adds $5.</div><table class="study-table"><thead><tr><th>Situation</th><th>Total</th></tr></thead><tbody><tr><td>Blinds only</td><td>$15</td></tr><tr><td>Blinds + 1 caller</td><td>$20</td></tr><tr><td>Blinds + 2 callers</td><td>$25</td></tr><tr><td>Blinds + 3 callers</td><td>$30</td></tr><tr><td>Blinds + 4 callers</td><td>$35</td></tr><tr><td>Blinds + 5 callers</td><td>$40</td></tr><tr><td>Blinds + 6 callers</td><td>$45</td></tr><tr><td>Blinds + 7 callers</td><td>$50</td></tr><tr><td>Blinds + 8 callers</td><td>$55</td></tr></tbody></table></div>
       </div>
     </div>
   </section>
@@ -397,7 +397,7 @@ const DealerMathCore = (() => {
   const triple = n => Number(n) * 3;
   const multiply = (a,b) => Number(a) * Number(b);
   const potAmount = (lastBet, trail) => triple(lastBet) + Number(trail);
-  const blindsCallersTotal = callers => 20 + (Number(callers) - 1) * 5;
+  const blindsCallersTotal = callers => 15 + Number(callers) * 5;
   function tripleSteps(n) {
     n = Number(n);
     if (n % 10 === 5) {
@@ -557,7 +557,7 @@ function generateAddition(level=2, adaptive=true){
   return {type:'addition',a,b,answer:a+b};
 }
 function generateBlindsCallers(callers=null){
-  const n=callers || weightedPick([1,2,3,4,5,6,7,8],x=>weakness(data.callerStats[x]));
+  const n=(callers===null || callers===undefined) ? weightedPick([0,1,2,3,4,5,6,7,8],x=>weakness(data.callerStats[x])) : Number(callers);
   return {type:'callers',callers:n,answer:DealerMathCore.blindsCallersTotal(n)};
 }
 function generateMult(tables, forcedTable=null){
@@ -664,8 +664,8 @@ function prepareSession(mode){
   if(mode==='mode8'){ base.level=Number(document.getElementById('m8-level').value); base.count=Number(document.getElementById('m8-count').value); base.test=true; }
   if(mode==='mode9'){
     base.count=Number(document.getElementById('m9-count').value); base.level=null; base.blindsTest=true;
-    const rounds=base.count/8;
-    base.queue=shuffle(Array.from({length:rounds},()=>[1,2,3,4,5,6,7,8]).flat().map(callers=>generateBlindsCallers(callers)));
+    const rounds=base.count/9;
+    base.queue=shuffle(Array.from({length:rounds},()=>[0,1,2,3,4,5,6,7,8]).flat().map(callers=>generateBlindsCallers(callers)));
   }
   session=base;
   renderPreparedState();
@@ -742,7 +742,7 @@ function renderProblem(p,el){
   if(p.type==='triple') el.innerHTML=`<div class="problem-label">PLO ×3</div><div class="problem-main">${money(p.lastBet)} × 3</div>`;
   if(p.type==='addition') el.innerHTML=`<div class="problem-label">Add quickly</div><div class="problem-main">${p.a} + ${p.b}</div>`;
   if(p.type==='pot') el.innerHTML=`<div class="problem-stack"><div class="problem-line"><span>Last Bet</span><strong>${money(p.lastBet)}</strong></div><div class="problem-line"><span>Betting Trail</span><strong>${money(p.trail)}</strong></div></div><div class="pot-call">PLAYER SAYS: POT</div>`;
-  if(p.type==='callers') el.innerHTML=`<div class="problem-label">Blinds + Callers</div><div class="problem-main">Blinds + ${p.callers} ${p.callers===1?'caller':'callers'}</div><div class="pot-call">TOTAL?</div>`;
+  if(p.type==='callers') el.innerHTML=`<div class="problem-label">Blinds + Callers</div><div class="problem-main">${p.callers===0?'Blinds only':`Blinds + ${p.callers} ${p.callers===1?'caller':'callers'}`}</div><div class="pot-call">TOTAL?</div>`;
 }
 function currentProblemMs(){
   if(!session || !session.problemStarted) return 0;
@@ -794,9 +794,9 @@ function explainProblem(p){
   if(p.type==='addition') return DealerMathCore.additionSteps(p.a,p.b);
   if(p.type==='pot') return DealerMathCore.potSteps(p.lastBet,p.trail);
   if(p.type==='callers'){
-    if(p.callers===1) return [`Blinds + 1 caller = $20.`, `That is your base fact to memorize.`];
-    const extra=p.callers-1, add=extra*5;
-    return [`Start with: Blinds + 1 caller = $20.`, `There are ${extra} additional callers.`, `${extra} × $5 = $${add}.`, `$20 + $${add} = $${p.answer}.`];
+    if(p.callers===0) return [`Blinds only = $15.`, `That is your base fact to memorize.`];
+    const add=p.callers*5;
+    return [`Start with: Blinds only = $15.`, `${p.callers} ${p.callers===1?'caller adds':'callers add'} $${add}.`, `$15 + $${add} = $${p.answer}.`];
   }
   return [`Correct answer: ${p.answer}`];
 }
@@ -867,7 +867,7 @@ function sessionRecommendations(s){
     if(m.type==='triple') list.push(`${money(m.lastBet)} × 3`);
     if(m.type==='pot') list.push(`POT: ${money(m.lastBet)} × 3 + ${money(m.trail)}`);
     if(m.type==='addition') list.push(`${m.a} + ${m.b}`);
-    if(m.type==='callers') list.push(`Blinds + ${m.callers} ${m.callers===1?'caller':'callers'}`);
+    if(m.type==='callers') list.push(m.callers===0?'Blinds only':`Blinds + ${m.callers} ${m.callers===1?'caller':'callers'}`);
   });
   return [...new Set(list)].slice(0,6);
 }
@@ -891,7 +891,7 @@ function renderWeakList(){
   Object.entries(data.facts).forEach(([k,b])=>{ if(b.count) entries.push({label:k,score:weakness(b),detail:`${b.wrong} wrong`}); });
   Object.entries(data.betStats).forEach(([k,b])=>{ if(b.count) entries.push({label:`$${k} × 3`,score:weakness(b),detail:`${b.wrong} wrong`}); });
   Object.entries(data.trailStats).forEach(([k,b])=>{ if(b.count) entries.push({label:`Trail $${k}`,score:weakness(b),detail:`${b.slow} slow`}); });
-  Object.entries(data.callerStats).forEach(([k,b])=>{ if(b.count) entries.push({label:`Blinds + ${k} ${Number(k)===1?'caller':'callers'}`,score:weakness(b),detail:`${b.wrong} wrong`}); });
+  Object.entries(data.callerStats).forEach(([k,b])=>{ if(b.count) entries.push({label:Number(k)===0?'Blinds only':`Blinds + ${k} ${Number(k)===1?'caller':'callers'}`,score:weakness(b),detail:`${b.wrong} wrong`}); });
   entries.sort((a,b)=>b.score-a.score); const top=entries.slice(0,7); const el=document.getElementById('weak-list');
   el.innerHTML=top.length?top.map(x=>`<div class="weak-item"><span>${esc(x.label)}</span><span>${esc(x.detail)}</span></div>`).join(''):'<div class="empty">Answer some problems to build your weak-number profile.</div>';
 }
@@ -945,6 +945,7 @@ function runInternalSelfTest(){
     DealerMathCore.potAmount(85,65)===320,
     DealerMathCore.potAmount(125,95)===470,
     DealerMathCore.potAmount(195,85)===670,
+    DealerMathCore.blindsCallersTotal(0)===15,
     DealerMathCore.blindsCallersTotal(1)===20,
     DealerMathCore.blindsCallersTotal(2)===25,
     DealerMathCore.blindsCallersTotal(3)===30,
