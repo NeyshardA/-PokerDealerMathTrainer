@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-<meta name="theme-color" content="#07100d" />
+<meta name="theme-color" content="#0b1015" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="format-detection" content="telephone=no" />
@@ -215,6 +215,252 @@
     .stat-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
     .mult-card div { line-height: 1.6; }
   }
+
+
+  /* =========================================================
+     PROFESSIONAL VISUAL REFRESH — presentation layer only
+     Keeps all existing layout, drill logic, storage and controls.
+     ========================================================= */
+  :root {
+    --bg: #0b1015;
+    --panel: #111820;
+    --panel-2: #151e27;
+    --panel-3: #1b2631;
+    --gold: #b79a62;
+    --gold-2: #dbc798;
+    --green: #4b9f7d;
+    --red: #d56f72;
+    --text: #eef2f4;
+    --muted: #97a3ad;
+    --border: rgba(205, 216, 226, .12);
+    --shadow: 0 16px 42px rgba(0, 0, 0, .30);
+    --radius: 17px;
+  }
+
+  html, body {
+    background:
+      radial-gradient(circle at 52% -12%, rgba(57, 79, 98, .26) 0%, transparent 34%),
+      linear-gradient(180deg, #0c1218 0%, #090e13 54%, #070b0f 100%);
+    color: var(--text);
+  }
+
+  header {
+    background: rgba(10, 15, 20, .90);
+    border-bottom: 1px solid rgba(205, 216, 226, .10);
+    box-shadow: 0 8px 24px rgba(0,0,0,.16);
+  }
+
+  .topbar { padding-top: 14px; padding-bottom: 14px; }
+  .brand h1 { font-weight: 780; letter-spacing: -.015em; }
+  .brand p { color: #8996a0; letter-spacing: .02em; }
+
+  .chip-mark {
+    border: 1px solid rgba(219, 199, 152, .62);
+    background: linear-gradient(145deg, #1b232b, #111820);
+    color: var(--gold-2);
+    box-shadow:
+      inset 0 0 0 5px rgba(183, 154, 98, .06),
+      0 0 0 1px rgba(255,255,255,.035),
+      0 8px 22px rgba(0,0,0,.26);
+    font-weight: 850;
+  }
+
+  .formula-pill {
+    background: rgba(183,154,98,.07);
+    border-color: rgba(219,199,152,.20);
+    color: #d9c28d;
+    font-weight: 760;
+    letter-spacing: .01em;
+  }
+
+  .panel {
+    background:
+      linear-gradient(180deg, rgba(20, 29, 38, .97), rgba(13, 20, 27, .98));
+    border: 1px solid rgba(205, 216, 226, .11);
+    box-shadow: var(--shadow);
+  }
+
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 92% 0%, rgba(75,159,125,.10), transparent 30%),
+      linear-gradient(180deg, rgba(22,32,41,.98), rgba(14,21,28,.98));
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    left: 24px;
+    right: 24px;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(219,199,152,.55), transparent);
+  }
+
+  .eyebrow {
+    color: #cdb782;
+    font-weight: 820;
+    letter-spacing: .18em;
+  }
+  h2 { font-weight: 780; letter-spacing: -.025em; }
+  .sub { color: #9ca7b0; }
+
+  .nav { background: linear-gradient(180deg, rgba(18,26,34,.98), rgba(12,18,24,.98)); }
+  .nav-label { color: #7f8b95; font-weight: 800; }
+  .nav button {
+    color: #cbd3d9;
+    font-weight: 720;
+    transition: background .16s ease, color .16s ease, box-shadow .16s ease, transform .16s ease;
+  }
+  .nav button:hover { background: rgba(255,255,255,.035); color: #f2f5f7; }
+  .nav button.active {
+    background: linear-gradient(90deg, rgba(183,154,98,.11), rgba(75,159,125,.055));
+    color: #f7f8f9;
+    outline: 1px solid rgba(219,199,152,.13);
+    box-shadow: inset 3px 0 0 #b79a62;
+  }
+  .nav .num {
+    background: #202b35;
+    color: #d8c391;
+    border: 1px solid rgba(255,255,255,.045);
+  }
+
+  .mode-card, .stat, .mult-card, .result-card, .level-item {
+    background: rgba(255,255,255,.022);
+    border-color: rgba(205,216,226,.085);
+  }
+  .mode-card {
+    transition: border-color .16s ease, background .16s ease, transform .16s ease;
+  }
+  .mode-card:hover {
+    background: rgba(255,255,255,.032);
+    border-color: rgba(219,199,152,.16);
+  }
+  .mode-card h3, .section-title h3, .stats-panel h3 { color: #f0f3f5; }
+  .level-item strong, .mult-card h4, .study-table th { color: #d6c18f; }
+
+  select, .small-input {
+    background: #0d141b;
+    border-color: rgba(205,216,226,.13);
+    color: #edf1f3;
+  }
+  select:focus, .small-input:focus, .answer-input:focus {
+    border-color: rgba(183,154,98,.78);
+    box-shadow: 0 0 0 3px rgba(183,154,98,.10);
+  }
+
+  .btn {
+    background: #1a2731;
+    border-color: rgba(205,216,226,.11);
+    color: #eef2f4;
+    font-weight: 780;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    transition: transform .14s ease, filter .14s ease, border-color .14s ease;
+  }
+  .btn:hover { filter: brightness(1.07); border-color: rgba(205,216,226,.18); }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary {
+    background: linear-gradient(135deg, #a88b57, #d0b77d);
+    color: #101317;
+    border-color: rgba(226,207,162,.22);
+    box-shadow: 0 8px 22px rgba(88,71,40,.22);
+  }
+  .btn.green {
+    background: linear-gradient(135deg, #326e58, #4b9f7d);
+    color: #f4f8f6;
+    border-color: rgba(97,184,147,.16);
+  }
+  .btn.red {
+    background: rgba(213,111,114,.10);
+    color: #f4b9ba;
+    border-color: rgba(213,111,114,.25);
+  }
+  .btn.ghost { background: rgba(255,255,255,.025); }
+
+  .badge {
+    background: rgba(255,255,255,.045);
+    color: #d7dde1;
+    border: 1px solid rgba(205,216,226,.055);
+  }
+  .badge.gold {
+    color: #d9c38e;
+    background: rgba(183,154,98,.075);
+    border-color: rgba(219,199,152,.11);
+  }
+
+  .trainer { background: linear-gradient(180deg, rgba(18,27,35,.99), rgba(11,17,23,.99)); }
+  .trainer-top, .trainer-controls { border-color: rgba(205,216,226,.085); }
+  .problem-area {
+    background:
+      radial-gradient(circle at 50% 35%, rgba(52,71,87,.16), transparent 38%);
+  }
+  .problem-main {
+    color: #f3f5f6;
+    font-weight: 860;
+    letter-spacing: -.04em;
+    text-shadow: 0 10px 30px rgba(0,0,0,.24);
+  }
+  .problem-line { border-bottom-color: rgba(205,216,226,.085); }
+  .problem-line strong { color: #f1f4f6; }
+  .pot-call { color: #d4bf8d; }
+  .answer-input {
+    background: #090f14;
+    border-color: rgba(205,216,226,.15);
+    color: #f5f7f8;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.025), 0 12px 28px rgba(0,0,0,.16);
+  }
+  .answer-input::placeholder { color: #64717b; }
+  .feedback.correct {
+    background: rgba(75,159,125,.09);
+    border-color: rgba(75,159,125,.28);
+  }
+  .feedback.wrong {
+    background: rgba(213,111,114,.075);
+    border-color: rgba(213,111,114,.25);
+  }
+  .feedback .correct-answer { color: #d8c28e; }
+
+  .stats-panel { background: linear-gradient(180deg, rgba(18,26,34,.98), rgba(12,18,24,.98)); }
+  .stat .k { color: #86939d; }
+  .stat .v { color: #f1f4f6; }
+  .weak-box { border-color: rgba(205,216,226,.08); }
+  .weak-item { background: rgba(255,255,255,.025); }
+  .weak-item span:last-child { color: #e1a0a2; }
+
+  .bar { background: #0a1117; }
+  .bar > div { background: linear-gradient(90deg, #467e6a, #b69a61); }
+
+  .study-table th, .study-table td { border-bottom-color: rgba(205,216,226,.075); }
+  .study-table td { color: #dce2e6; }
+  .callout {
+    border-left-color: #b79a62;
+    background: rgba(183,154,98,.055);
+  }
+
+  .modal {
+    background: #121a22;
+    border-color: rgba(205,216,226,.12);
+  }
+  .modal-backdrop { background: rgba(3,7,10,.76); }
+  .kbd {
+    background: #1a232c;
+    border-color: rgba(205,216,226,.13);
+    color: #dbe1e5;
+  }
+  footer { color: #66737d; }
+
+  @media (max-width: 820px) {
+    .trainer-controls {
+      background: rgba(10,15,20,.96);
+      border-top: 1px solid rgba(205,216,226,.09);
+    }
+    .nav {
+      background: rgba(15,22,29,.96);
+      border-color: rgba(205,216,226,.10);
+      box-shadow: 0 10px 26px rgba(0,0,0,.20);
+    }
+  }
+
 </style>
 </head>
 <body>
